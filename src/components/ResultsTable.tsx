@@ -9,7 +9,7 @@ interface ResultsTableProps {
 const ResultsTable: React.FC<ResultsTableProps> = ({ results, config }) => {
   if (!results) {
     return (
-      <div className="text-center text-slate-500 py-8">
+      <div className="py-8 text-center text-slate-500">
         No results available. Run VQE calculation to see results.
       </div>
     );
@@ -25,46 +25,46 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, config }) => {
       <div className="space-y-4">
         <h3 className="font-medium text-slate-900">Energy Comparison</h3>
         <div className="space-y-3">
-          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+          <div className="flex items-center justify-between p-4 border border-blue-200 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
             <div>
-              <div className="font-semibold text-blue-900">VQE Energy</div>
-              <div className="text-sm text-blue-700 font-medium">Variational result</div>
+              <div className="font-semibold text-blue-900">VQE Energy (Quantum)</div>
+              <div className="text-sm font-medium text-blue-700">Variational result</div>
             </div>
             <div className="text-right">
-              <div className="font-mono font-bold text-blue-900 text-lg">
+              <div className="font-mono text-lg font-bold text-blue-900">
                 {results.energy.toFixed(6)} Ha
               </div>
-              <Badge className="bg-blue-200 text-blue-800 font-semibold">
+              <Badge className="font-semibold text-blue-800 bg-blue-200">
                 {(results.energy * 27.2114).toFixed(2)} eV
               </Badge>
             </div>
           </div>
 
-          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border border-green-200">
+          <div className="flex items-center justify-between p-4 border border-green-200 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
             <div>
-              <div className="font-semibold text-green-900">Exact Energy</div>
-              <div className="text-sm text-green-700 font-medium">Full CI reference</div>
+              <div className="font-semibold text-green-900">Exact Energy (True)</div>
+              <div className="text-sm font-medium text-green-700">Full CI reference</div>
             </div>
             <div className="text-right">
-              <div className="font-mono font-bold text-green-900 text-lg">
+              <div className="font-mono text-lg font-bold text-green-900">
                 {exactEnergy.toFixed(6)} Ha
               </div>
-              <Badge className="bg-green-200 text-green-800 font-semibold">
+              <Badge className="font-semibold text-green-800 bg-green-200">
                 {(exactEnergy * 27.2114).toFixed(2)} eV
               </Badge>
             </div>
           </div>
 
-          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl border border-purple-200">
+          <div className="flex items-center justify-between p-4 border border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
             <div>
-              <div className="font-semibold text-purple-900">Hartree-Fock Energy</div>
-              <div className="text-sm text-purple-700 font-medium">Mean-field reference</div>
+              <div className="font-semibold text-purple-900">Hartree-Fock Energy (Classical)</div>
+              <div className="text-sm font-medium text-purple-700">Mean-field reference</div>
             </div>
             <div className="text-right">
-              <div className="font-mono font-bold text-purple-900 text-lg">
+              <div className="font-mono text-lg font-bold text-purple-900">
                 {hfEnergy.toFixed(6)} Ha
               </div>
-              <Badge className="bg-purple-200 text-purple-800 font-semibold">
+              <Badge className="font-semibold text-purple-800 bg-purple-200">
                 {(hfEnergy * 27.2114).toFixed(2)} eV
               </Badge>
             </div>
@@ -76,16 +76,16 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, config }) => {
       <div className="space-y-4">
         <h3 className="font-medium text-slate-900">Error Analysis</h3>
         <div className="grid grid-cols-2 gap-4">
-          <div className="p-3 border border-slate-200 rounded-lg">
-            <div className="text-sm text-slate-600">VQE vs Exact</div>
-            <div className="font-mono text-lg font-bold text-red-600">
+          <div className="p-3 border rounded-lg border-slate-200">
+            <div className="text-sm text-slate-600">Exact vs VQE</div>
+            <div className="font-mono text-lg font-bold text-green-600">
               {((results.energy - exactEnergy) * 1000).toFixed(3)} mHa
             </div>
           </div>
-          <div className="p-3 border border-slate-200 rounded-lg">
-            <div className="text-sm text-slate-600">VQE vs HF</div>
-            <div className="font-mono text-lg font-bold text-orange-600">
-              {((results.energy - hfEnergy) * 1000).toFixed(3)} mHa
+          <div className="p-3 border rounded-lg border-slate-200">
+            <div className="text-sm text-slate-600">Exact vs HF</div>
+            <div className="font-mono text-lg font-bold text-red-600">
+              {((hfEnergy - exactEnergy) * 1000).toFixed(3)} mHa
             </div>
           </div>
         </div>
@@ -129,7 +129,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, config }) => {
       {/* Convergence Summary */}
       <div className="space-y-4">
         <h3 className="font-medium text-slate-900">Convergence Summary</h3>
-        <div className="p-4 bg-slate-50 rounded-lg">
+        <div className="p-4 rounded-lg bg-slate-50">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
               <div className="text-2xl font-bold text-slate-900">
